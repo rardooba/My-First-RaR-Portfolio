@@ -1,0 +1,36 @@
+{
+  "name": "portfolio-rardooba",
+  "version": "1.0.0",
+  "description": "Rarddoba's art to code website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0",
+    "build": "next build",
+    "lint": "next lint",
+    "prettier": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "Rardooba<rardooba@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@chakra-ui/icons": "^2.0.2",
+    "@chakra-ui/react": "^2.2.1",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
+    "axios": "^0.27.2",
+    "framer-motion": "^6.3.11",
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-hook-form": "^7.32.1",
+    "urql": "^2.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.17.0",
+    "eslint-config-next": "^12.1.6",
+    "prettier": "^2.6.2"
+  }
+}
