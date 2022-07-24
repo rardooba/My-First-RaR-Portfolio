@@ -38,13 +38,13 @@ const ContactForm = () => {
       subject: data.subject
     }
 
+    completeFromStep()
+
     try {
       await create({ data: form })
     } catch (err) {
       console.log(err)
     }
-
-    completeFromStep()
   }
 
   const completeFromStep = () => {
