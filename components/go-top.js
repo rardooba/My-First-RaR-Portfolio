@@ -1,6 +1,6 @@
 import { IconButton, useColorModeValue } from '@chakra-ui/react'
 import { ChevronUpIcon } from '@chakra-ui/icons'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 
 const GoTop = () => {
@@ -16,17 +16,15 @@ const GoTop = () => {
     }
   }
 
-  //   useEffect(() => {
-
-  //   }, [])
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     })
   }
-
-  window.addEventListener('scroll', toggleVisible)
+  useEffect(() => {
+    window.addEventListener('scroll', toggleVisible)
+  }, [])
 
   return (
     <Container>
