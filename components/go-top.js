@@ -1,7 +1,6 @@
-import { IconButton, useColorModeValue } from '@chakra-ui/react'
+import { IconButton, useColorModeValue, Box } from '@chakra-ui/react'
 import { ChevronUpIcon } from '@chakra-ui/icons'
 import React, { useEffect, useState } from 'react'
-import styled from '@emotion/styled'
 
 const GoTop = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -27,7 +26,12 @@ const GoTop = () => {
   }, [])
 
   return (
-    <Container>
+    <Box
+      pos="fixed"
+      display="inline-block"
+      left={{ base: '44%', md: '49%' }}
+      bottom="80px"
+    >
       <IconButton
         aria-label="Go top"
         colorScheme={useColorModeValue('purple', 'orange')}
@@ -38,15 +42,8 @@ const GoTop = () => {
           boxShadow: '0px 0px 22px 6px rgba(0, 0, 0, 0.36)'
         }}
       ></IconButton>
-    </Container>
+    </Box>
   )
 }
-
-const Container = styled.div`
-  display: inline-block;
-  position: fixed;
-  left: 49%;
-  bottom: 80px;
-`
 
 export default GoTop
