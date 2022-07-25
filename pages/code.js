@@ -62,7 +62,9 @@ const Code = () => {
             ))}
           </NoSsr>
         </SimpleGrid>
-        <GoTop />
+        <NoSsr>
+          <GoTop />
+        </NoSsr>
       </Container>
     </Layout>
   )

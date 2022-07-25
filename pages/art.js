@@ -5,6 +5,8 @@ import Layout from '../components/layouts/article'
 
 import arts from '../api/artData'
 
+import NoSsr from '../components/no-ssr'
+
 import GoTop from '../components/go-top'
 
 const Art = () => {
@@ -22,7 +24,9 @@ const Art = () => {
             </Section>
           ))}
         </SimpleGrid>
-        <GoTop />
+        <NoSsr>
+          <GoTop />
+        </NoSsr>
       </Container>
     </Layout>
   )
