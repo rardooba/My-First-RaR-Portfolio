@@ -5,6 +5,8 @@ import Layout from '../components/layouts/article'
 
 import arts from '../api/artData'
 
+import GoTop from '../components/go-top'
+
 const Art = () => {
   return (
     <Layout>
@@ -20,6 +22,7 @@ const Art = () => {
             </Section>
           ))}
         </SimpleGrid>
+        <GoTop />
       </Container>
     </Layout>
   )

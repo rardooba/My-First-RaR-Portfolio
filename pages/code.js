@@ -8,6 +8,8 @@ import { PRODUCT_QUERY } from '../lib/query'
 
 import NoSsr from '../components/no-ssr'
 
+import GoTop from '../components/go-top'
+
 //TODO infinit scroll
 //TODO Strapi
 const Code = () => {
@@ -32,6 +34,8 @@ const Code = () => {
   if (error) return <p>Oh no... {error.message}</p>
 
   const codeWorks = data.codeWorks.data
+
+  console.log(codeWorks)
 
   return (
     <Layout>
@@ -58,6 +62,7 @@ const Code = () => {
             ))}
           </NoSsr>
         </SimpleGrid>
+        <GoTop />
       </Container>
     </Layout>
   )

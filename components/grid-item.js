@@ -189,7 +189,6 @@ export const GridItemStyle = () => (
         color: #ffffff;
         font-size: 1.5rem;
         font-weight: 700;
-        line-height: 40px;
         text-transform: capitalize;
       }
       
