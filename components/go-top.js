@@ -31,6 +31,7 @@ const GoTop = () => {
       display="inline-block"
       left={{ base: '44%', md: '49%' }}
       bottom="80px"
+      zIndex="85"
     >
       <IconButton
         aria-label="Go top"

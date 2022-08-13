@@ -53,10 +53,6 @@ const Code = () => {
                   description={work.attributes.description}
                   github={work.attributes.githubLink}
                   demo={work.attributes.liveDemoLink}
-                  // thumbnail={
-                  //   work.attributes.image.data.attributes.formats.small.url
-                  // }
-                  // icon={work.attributes.logo.data.attributes.url}
                 />
               </Section>
             ))}
