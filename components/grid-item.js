@@ -6,13 +6,24 @@ import {
   LinkOverlay,
   Flex,
   Link,
-  Heading
+  //Heading,
+  Button,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  AlertDialogCloseButton,
+  useDisclosure,
+  useColorModeValue
 } from '@chakra-ui/react'
 import { Global } from '@emotion/react'
 import styled from '@emotion/styled'
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { useRef } from 'react'
 
 export const GridItem = ({ children, href, title, thumbnail }) => (
   <Box w="100%" align="center">
@@ -34,60 +45,149 @@ export const GridItem = ({ children, href, title, thumbnail }) => (
 
 export const CodeGridItem = ({
   title,
-  thumbnail,
-  icon,
+  //thumbnail,
+  //icon,
   description,
   github,
   demo
-}) => (
-  <Flex align="center" justify="center">
-    <Box className="flip-card">
-      <Box className="flip-card_front">
-        <Image src={thumbnail} alt={title} width={374} height={500} />
-      </Box>
+}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
-      <Box className="flip-card_back">
-        <Box className="flip-card_back_inner">
-          <Image src={icon} width={90} height={115} alt={title} />
-          <Heading as="h3" size="lg" letterSpacing={'tighter'}>
-            {title}
-          </Heading>
-          <p>{description}</p>
-        </Box>
-        <Box className="flip-card_back_inner_button">
-          {github ? (
-            <Link href={github} target="_blank">
-              <i className="fa-brands fa-github"></i>
-            </Link>
-          ) : (
-            <span></span>
-          )}
-          {demo ? (
-            <Link href={demo} target="_blank">
-              <i className="fa-solid fa-magnifying-glass fa-bounce"></i>
-            </Link>
-          ) : (
-            <span></span>
-          )}
-        </Box>
-      </Box>
-    </Box>
-  </Flex>
-)
+  const colorIcon = useColorModeValue('black', 'white')
+  return (
+    <>
+      <Button onClick={onOpen}>{title}</Button>
+      <AlertDialog
+        motionPreset="slideInBottom"
+        onClose={onClose}
+        isOpen={isOpen}
+        isCentered
+      >
+        <AlertDialogOverlay />
 
-const transition = {
-  type: 'spring',
-  damping: 25,
-  stiffness: 400
+        <AlertDialogContent>
+          <AlertDialogHeader>{title}</AlertDialogHeader>
+          <AlertDialogCloseButton />
+          <AlertDialogBody>{description}</AlertDialogBody>
+          <AlertDialogFooter>
+            {github ? (
+              <Button>
+                <Link
+                  href={github}
+                  color={colorIcon}
+                  fontSize="1.5rem"
+                  target="_blank"
+                  isExternal
+                >
+                  <i className="fa-brands fa-github"></i>
+                </Link>
+              </Button>
+            ) : (
+              <span></span>
+            )}
+            {demo ? (
+              <Button ml={3}>
+                <Link
+                  href={demo}
+                  color={colorIcon}
+                  fontSize="1.5rem"
+                  target="_blank"
+                  isExternal
+                >
+                  <i className="fa-solid fa-magnifying-glass fa-bounce"></i>
+                </Link>
+              </Button>
+            ) : (
+              <span></span>
+            )}
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+
+    // <Flex align="center" justify="center">
+    //   <Box>
+    //     <Heading as="h3" size="lg" letterSpacing={'tighter'}>{title}</Heading>
+    //     <p>{description}</p>
+    //     <Box>
+    //         {github ? (
+    //           <Link href={github} target="_blank">
+    //             <i className="fa-brands fa-github"></i>
+    //           </Link>
+    //         ) : (
+    //           <span></span>
+    //         )}
+    //         {demo ? (
+    //           <Link href={demo} target="_blank">
+    //             <i className="fa-solid fa-magnifying-glass fa-bounce"></i>
+    //           </Link>
+    //         ) : (
+    //           <span></span>
+    //         )}
+    //       </Box>
+    //   </Box>
+    //  <Box className="flip-card">
+    //   <Box className="flip-card_front">
+    //     <Image src={thumbnail} alt={title} width={374} height={500} />
+    //   </Box>
+
+    //   <Box className="flip-card_back">
+    //     <Box className="flip-card_back_inner">
+    //       <Image src={icon} width={90} height={115} alt={title} />
+    //       <Heading as="h3" size="lg" letterSpacing={'tighter'}>
+    //         {title}
+    //       </Heading>
+    //       <p>{description}</p>
+    //     </Box>
+    //     <Box className="flip-card_back_inner_button">
+    //       {github ? (
+    //         <Link href={github} target="_blank">
+    //           <i className="fa-brands fa-github"></i>
+    //         </Link>
+    //       ) : (
+    //         <span></span>
+    //       )}
+    //       {demo ? (
+    //         <Link href={demo} target="_blank">
+    //           <i className="fa-solid fa-magnifying-glass fa-bounce"></i>
+    //         </Link>
+    //       ) : (
+    //         <span></span>
+    //       )}
+    //     </Box>
+    //   </Box>
+    // </Box>
+    // </Flex>
+  )
 }
 
 export const ArtGridItem = ({ title, thumbnail }) => {
   const [isOpen, setOpen] = useState(false)
 
+  const figure = useRef()
+
+  const zIndexMouseOver = () => {
+    figure.current.style.zIndex = '5'
+  }
+  const zIndexMouseLeave = () => {
+    figure.current.style.zIndex = '0'
+  }
+
+  const transition = {
+    type: 'spring',
+    damping: 25,
+    stiffness: 400
+  }
+
   return (
     <Flex align="center" justify="center">
       <Box className="art-card">
-        <Box className={`art-card_front ${isOpen ? 'open' : ''}`}>
+        <Box
+          ref={figure}
+          className={`art-card_front ${isOpen ? 'open' : ''}`}
+          onMouseOver={zIndexMouseOver}
+          onMouseLeave={zIndexMouseLeave}
+        >
           <motion.div
             animate={{ opacity: isOpen ? 1 : 0 }}
             transition={transition}

@@ -4,6 +4,7 @@ import { CodeGridItem } from '../components/grid-item'
 import Layout from '../components/layouts/article'
 
 import { useQuery } from 'urql'
+
 import { PRODUCT_QUERY } from '../lib/query'
 
 import NoSsr from '../components/no-ssr'
@@ -14,6 +15,7 @@ import GoTop from '../components/go-top'
 //TODO Strapi
 const Code = () => {
   //fetch data from strapi
+
   const [results] = useQuery({ query: PRODUCT_QUERY })
 
   const { data, fetching, error } = results
@@ -35,8 +37,6 @@ const Code = () => {
 
   const codeWorks = data.codeWorks.data
 
-  console.log(codeWorks)
-
   return (
     <Layout>
       <Container>
@@ -53,10 +53,10 @@ const Code = () => {
                   description={work.attributes.description}
                   github={work.attributes.githubLink}
                   demo={work.attributes.liveDemoLink}
-                  thumbnail={
-                    work.attributes.image.data.attributes.formats.small.url
-                  }
-                  icon={work.attributes.logo.data.attributes.url}
+                  // thumbnail={
+                  //   work.attributes.image.data.attributes.formats.small.url
+                  // }
+                  // icon={work.attributes.logo.data.attributes.url}
                 />
               </Section>
             ))}
@@ -69,5 +69,6 @@ const Code = () => {
     </Layout>
   )
 }
+
 
 export default Code
