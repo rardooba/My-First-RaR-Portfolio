@@ -1,24 +1,24 @@
 import { Container, Heading, SimpleGrid, Spinner } from '@chakra-ui/react'
+
 import Section from '../components/section'
 import { CodeGridItem } from '../components/grid-item'
+
 import Layout from '../components/layouts/article'
 
 import { useQuery } from 'urql'
 
 import { PRODUCT_QUERY } from '../lib/query'
 
-import NoSsr from '../components/no-ssr'
-
 import GoTop from '../components/go-top'
 
 //TODO infinit scroll
 //TODO Strapi
-const Code = () => {
+const Code = ({ data }) => {
   //fetch data from strapi
 
   const [results] = useQuery({ query: PRODUCT_QUERY })
 
-  const { data, fetching, error } = results
+  const { fetching, error } = results
 
   //Check the data coming in
 
@@ -35,7 +35,7 @@ const Code = () => {
     )
   if (error) return <p>Oh no... {error.message}</p>
 
-  const codeWorks = data.codeWorks.data
+  const codeWorks = data.data
 
   return (
     <Layout>
@@ -45,26 +45,35 @@ const Code = () => {
         </Heading>
 
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
-          <NoSsr>
-            {codeWorks.map(work => (
-              <Section delay={work.attributes.delay} key={work.attributes.slug}>
-                <CodeGridItem
-                  title={work.attributes.title}
-                  description={work.attributes.description}
-                  github={work.attributes.githubLink}
-                  demo={work.attributes.liveDemoLink}
-                />
-              </Section>
-            ))}
-          </NoSsr>
+          {codeWorks.map(work => (
+            <Section delay={work.attributes.delay} key={work.attributes.slug}>
+              <CodeGridItem
+                title={work.attributes.title}
+                description={work.attributes.description}
+                github={work.attributes.githubLink}
+                demo={work.attributes.liveDemoLink}
+              />
+            </Section>
+          ))}
         </SimpleGrid>
-        <NoSsr>
-          <GoTop />
-        </NoSsr>
+        <GoTop />
       </Container>
     </Layout>
   )
 }
 
+export async function getServerSideProps() {
+  try {
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_BACKEND_API_CODEWORKS
+    )
+    const data = await res.json()
+    return {
+      props: { data }
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 export default Code
