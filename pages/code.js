@@ -6,6 +6,7 @@ import Layout from '../components/layouts/article'
 import { useQuery } from 'urql'
 import { PRODUCT_QUERY } from '../lib/query'
 import GoTop from '../components/go-top'
+import arts from '../api/artData'
 
 //TODO infinit scroll
 //TODO Strapi
@@ -34,6 +35,8 @@ const Code = () => {
 
   const codeWorks = data.products
 
+  console.log(codeWorks);
+
   return (
     <Layout>
       <Container>
@@ -42,7 +45,7 @@ const Code = () => {
         </Heading>
 
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
-          {codeWorks.map(work => (
+          {arts.map(work => (
             <Section delay={work.attributes.delay} key={work.attributes.slug}>
               <CodeGridItem
                 title={work.attributes.title}
