@@ -230,35 +230,36 @@ const Profile = () => {
         <Image src="/images/rardooba.jpg" alt="rardooba profile" />
       </Box>
       <li className="icon-one">
-        <Link href="https://twitter.com/rardooba" target="_blank">
+        <Link href="https://twitter.com/rardooba" target="_blank" rel="noopener noreferrer">
           <i className="fa-brands fa-twitter"></i>
         </Link>
       </li>
       <li className="icon-two">
-        <a href="https://www.instagram.com/rardooba/">
+        <Link href="https://www.instagram.com/rardooba/" target="_blank" rel="noopener noreferrer">
           <i className="fa-brands fa-instagram"></i>
-        </a>
+        </Link>
       </li>
       <li className="icon-three">
         <Link
           href="https://www.linkedin.com/in/maissoum-aboudrare/"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <i className="fa-brands fa-linkedin-in"></i>
         </Link>
       </li>
       <li className="icon-four">
-        <Link href="https://www.behance.net/art-to-code" target="_blank">
+        <Link href="https://www.behance.net/art-to-code" target="_blank" rel="noopener noreferrer">
           <i className="fa-brands fa-behance"></i>
         </Link>
       </li>
       <li className="icon-five">
-        <Link href="https://github.com/rardooba" target="_blank">
+        <Link href="https://github.com/rardooba" target="_blank" rel="noopener noreferrer">
           <i className="fa-brands fa-github"></i>
         </Link>
       </li>
       <li className="icon-six">
-        <Link href="https://dribbble.com/art-to-code" target="_blank">
+        <Link href="https://dribbble.com/art-to-code" target="_blank" rel="noopener noreferrer">
           <i className="fa-brands fa-dribbble"></i>
         </Link>
       </li>
@@ -266,12 +267,13 @@ const Profile = () => {
         <Link
           href="https://www.youtube.com/channel/UC3xjOUiYkEzZ2LPJvBIJOiw"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <i className="fa-brands fa-youtube"></i>
         </Link>
       </li>
       <li className="icon-eight">
-        <Link href="https://medium.com/@rardooba" target="_blank">
+        <Link href="https://medium.com/@rardooba" target="_blank" rel="noopener noreferrer">
           <i className="fa-brands fa-medium"></i>
         </Link>
       </li>

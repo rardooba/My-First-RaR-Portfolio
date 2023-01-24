@@ -1,27 +1,24 @@
 import { Container, Heading, SimpleGrid, Spinner } from '@chakra-ui/react'
-
+import { createClient } from 'urql'
 import Section from '../components/section'
 import { CodeGridItem } from '../components/grid-item'
-
 import Layout from '../components/layouts/article'
-
 import { useQuery } from 'urql'
-
 import { PRODUCT_QUERY } from '../lib/query'
-
 import GoTop from '../components/go-top'
 
 //TODO infinit scroll
 //TODO Strapi
-const Code = ({ data }) => {
+const Code = () => {
   //fetch data from strapi
+  const client = createClient({
+    url: process.env.NEXT_PUBLIC_BACKEND_API_CODEWORKS
+  })
+  const [result] = useQuery({ query: PRODUCT_QUERY, client })
 
-  const [results] = useQuery({ query: PRODUCT_QUERY })
-
-  const { fetching, error } = results
+  const { fetching, error, data } = result
 
   //Check the data coming in
-
   if (fetching)
     return (
       <Spinner
@@ -35,7 +32,7 @@ const Code = ({ data }) => {
     )
   if (error) return <p>Oh no... {error.message}</p>
 
-  const codeWorks = data.data
+  const codeWorks = data.products
 
   return (
     <Layout>
@@ -60,20 +57,6 @@ const Code = ({ data }) => {
       </Container>
     </Layout>
   )
-}
-
-export async function getServerSideProps() {
-  try {
-    const res = await fetch(
-      process.env.NEXT_PUBLIC_BACKEND_API_CODEWORKS
-    )
-    const data = await res.json()
-    return {
-      props: { data }
-    }
-  } catch (err) {
-    console.log(err)
-  }
 }
 
 export default Code
